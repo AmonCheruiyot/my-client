@@ -1,42 +1,49 @@
 .recipe-card {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 16px;
-    margin: 16px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-  }
-  
-  .recipe-image {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-  }
-  
-  h3 {
-    color: #333;
-  }
-  
-  h4 {
-    margin-top: 12px;
-    color: #555;
-  }
-  
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  button {
-    margin-top: 12px;
-    padding: 10px 20px;
-    border: none;
-    background-color: #007BFF;
-    color: white;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
+  border: 1px solid #E0E0E0; /* Light Grey border for a subtle, modern look */
+  border-radius: 16px; /* Increased border-radius for more pronounced rounded corners */
+  padding: 16px;
+  margin: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1), 0 0 10px rgba(255, 215, 0, 0.5); /* Glowing effect with gold color */
+  text-align: center;
+  background-color: #FFFFFF; /* White background for a clean, elegant feel */
+  transition: box-shadow 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.recipe-card:hover {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15), 0 0 15px rgba(255, 215, 0, 0.7); /* Enhanced glow on hover */
+}
+
+.recipe-image {
+  width: 100%;
+  height: auto;
+  border-radius: 12px; /* Slightly smaller border-radius for images to match the card */
+}
+
+h3 {
+  color: #6A1B2D; /* Deep Burgundy for headings to convey elegance */
+}
+
+h4 {
+  margin-top: 12px;
+  color: #2D2D2D; /* Slate Grey for a sophisticated, neutral tone */
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+button {
+  margin-top: 12px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #F5D300; /* Gold for a touch of luxury and modern appeal */
+  color: #6A1B2D; /* Deep Burgundy text for contrast and consistency with headings */
+  border-radius: 8px; /* Rounded corners for the button */
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #F5C6C4; /* Soft Pink for a subtle hover effect */
+  color: #2D2D2D; /* Slate Grey text on hover for a modern look */
+}
