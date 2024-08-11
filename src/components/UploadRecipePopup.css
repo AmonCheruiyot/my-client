@@ -1,0 +1,70 @@
+.upload-recipe-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 40px; /* Further increased padding */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 600px; /* Further increased width */
+    height: 500px; /* Further increased height */
+    z-index: 1000;
+    overflow: auto; /* Allows scrolling if content exceeds height */
+  }
+  
+  .upload-recipe-popup button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 12px;
+    cursor: pointer;
+    font-size: 16px; /* Slightly larger font size */
+    margin: 10px 0;
+    display: block;
+    width: 100%;
+  }
+  
+  .upload-recipe-popup button:hover {
+    background-color: #0056b3;
+  }
+  
+  .upload-recipe-popup h2 {
+    margin-top: 0;
+    font-size: 22px; /* Increased font size */
+    color: #333;
+  }
+  
+  .upload-recipe-popup input[type="text"],
+  .upload-recipe-popup textarea,
+  .upload-recipe-popup input[type="file"] {
+    width: 100%;
+    padding: 12px; /* Increased padding */
+    margin: 12px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .upload-recipe-popup textarea {
+    height: 250px; /* Increased height for textarea */
+    resize: vertical;
+  }
+  
+  .upload-recipe-popup .error {
+    color: red;
+    margin-bottom: 10px;
+  }
+  
+  .upload-recipe-popup form {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Ensure form takes up full height */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  }
+  
+  .upload-recipe-popup form button {
+    align-self: flex-start;
+    margin-top: auto; /* Push the button to the bottom */
+  }
+  
