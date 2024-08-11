@@ -1,0 +1,12 @@
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #f1f1f1;
+    text-align: center;
+    padding: 2px 0;  /* Very reduced padding */
+    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+    font-size: 10px; /* Smaller font size */
+    line-height: 1;   /* Tight line height */
+}
