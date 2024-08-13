@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5000',
+  baseURL: process.env.REACT_APP_API_URL || 'https://recipe-app-0i3m.onrender.com',
 });
 
 export const getRecipes = () => api.get('/recipes');

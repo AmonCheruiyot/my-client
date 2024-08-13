@@ -7,6 +7,9 @@
   text-align: center;
   background-color: #FFFFFF; /* White background for a clean, elegant feel */
   transition: box-shadow 0.3s ease; /* Smooth transition for hover effect */
+  height: 560px; /* Increased height by 40% */
+  width: 100%; /* Increase width by 40% relative to its container */
+  max-width: 700px; /* Set a maximum width to prevent the card from becoming too wide */
 }
 
 .recipe-card:hover {
@@ -15,16 +18,18 @@
 
 .recipe-image {
   width: 100%;
-  height: auto;
-  border-radius: 12px; /* Slightly smaller border-radius for images to match the card */
+  height: 50%; /* Set image height to fill three-quarters of the card */
+  object-fit: cover; /* Ensures images fill the area without distortion */
+  border-radius: 12px 12px 0 0; /* Rounded corners on the top only */
 }
 
 h3 {
   color: #6A1B2D; /* Deep Burgundy for headings to convey elegance */
+  margin-top: 8px; /* Adjust spacing to fit the card height */
 }
 
 h4 {
-  margin-top: 12px;
+  margin-top: 8px;
   color: #2D2D2D; /* Slate Grey for a sophisticated, neutral tone */
 }
 
@@ -47,3 +52,4 @@ button:hover {
   background-color: #F5C6C4; /* Soft Pink for a subtle hover effect */
   color: #2D2D2D; /* Slate Grey text on hover for a modern look */
 }
+

@@ -23,7 +23,7 @@ const ProfilePopup = ({ onClose }) => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const profileResponse = await axios.get('http://localhost:5000/user/profile', {
+        const profileResponse = await axios.get('https://recipe-app-0i3m.onrender.com/user/profile', {
           headers: {
             Authorization: `Bearer ${authData.token}`,
           },
@@ -34,7 +34,7 @@ const ProfilePopup = ({ onClose }) => {
         setEmail(userProfile.email);
         setCurrentPhoto(userProfile.profile_photo);
 
-        const recipesResponse = await axios.get('http://localhost:5000/user/favorites', {
+        const recipesResponse = await axios.get('https://recipe-app-0i3m.onrender.com/user/favorites', {
           headers: {
             Authorization: `Bearer ${authData.token}`,
           },
@@ -69,7 +69,7 @@ const ProfilePopup = ({ onClose }) => {
     }
 
     try {
-      const response = await axios.put('http://localhost:5000/user/profile', formData, {
+      const response = await axios.put('https://recipe-app-0i3m.onrender.com/user/profile', formData, {
         headers: {
           Authorization: `Bearer ${authData.token}`,
           'Content-Type': 'multipart/form-data',
@@ -137,7 +137,7 @@ const ProfilePopup = ({ onClose }) => {
           className="profile-input"
         />
         {currentPhoto && (
-          <img src={`http://localhost:5000/uploads/${currentPhoto}`} alt="Profile" className="profile-photo" />
+          <img src={`https://recipe-app-0i3m.onrender.com/uploads/${currentPhoto}`} alt="Profile" className="profile-photo" />
         )}
         <input
           type="file"

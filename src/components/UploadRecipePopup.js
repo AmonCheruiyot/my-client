@@ -34,7 +34,7 @@ const UploadRecipePopup = ({ onClose, onRecipeAdded }) => {
 
     try {
       const token = authData.token; // Get the token from authData
-      const response = await axios.post('http://localhost:5000/recipes', data, {
+      const response = await axios.post('https://recipe-app-0i3m.onrender.com/recipes', data, {
         headers: {
           Authorization: `Bearer ${token}`, // Use the token from authData. Do NOT set Content-Type.
         },

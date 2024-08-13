@@ -1,5 +1,5 @@
 const config = {
-    apiBaseUrl: 'http://localhost:5000', // Backend API URL
+    apiBaseUrl: 'https://recipe-app-0i3m.onrender.com', // Backend API URL
   };
   
   export default config;

@@ -21,7 +21,7 @@ const ReviewPopup = ({ recipeId, reviews, onClose, onReviewAdded }) => {
         }
 
         try {
-            await axios.post(`http://localhost:5000/recipes/${recipeId}/reviews`, {
+            await axios.post(`https://recipe-app-0i3m.onrender.com/recipes/${recipeId}/reviews`, {
                 rating,
                 comment,
             }, {
@@ -45,7 +45,6 @@ const ReviewPopup = ({ recipeId, reviews, onClose, onReviewAdded }) => {
 
     return (
         <div className="review-popup">
-            <h2>Reviews for Recipe ID: {recipeId}</h2>
             {error && <p className="error">{error}</p>}
             {success && <p className="success">{success}</p>}
             <form onSubmit={handleAddReview}>
@@ -73,8 +72,7 @@ const ReviewPopup = ({ recipeId, reviews, onClose, onReviewAdded }) => {
             {reviews.length > 0 ? (
                 reviews.map((review) => (
                     <div key={review.id} className="existing-review">
-                        <p><strong>{review.author}: </strong>{review.comment} <span>({review.rating}/5)</span></p>
-                        <p><em>{new Date(review.created_at).toLocaleDateString()}</em></p>
+                        <p><strong>{review.author}: </strong>{review.comment} <span>({review.rating}/5)</span></p>      
                     </div>
                 ))
             ) : (

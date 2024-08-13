@@ -21,7 +21,7 @@ const RegisterPopup = ({ onClose }) => { // Accept onClose as a prop
     }
 
     try {
-      const response = await axios.post('http://localhost:5000/register', formData, {
+      const response = await axios.post('https://recipe-app-0i3m.onrender.com/register', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

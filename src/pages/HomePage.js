@@ -10,7 +10,7 @@ const HomePage = () => {
   const [filteredRecipes, setFilteredRecipes] = useState([]); // State for filtered recipes
 
   useEffect(() => {
-    axios.get('http://localhost:5000/recipes')  // Updated URL
+    axios.get('https://recipe-app-0i3m.onrender.com/recipes')  // Updated URL
       .then(response => {
         setRecipes(response.data);
         setFilteredRecipes(response.data); // Initialize with all recipes

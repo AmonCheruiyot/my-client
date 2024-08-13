@@ -19,7 +19,7 @@ const RecipesPage = () => {
 
   const fetchRecipes = () => {
     setLoading(true);
-    axios.get('http://localhost:5000/recipes')
+    axios.get('https://recipe-app-0i3m.onrender.com/recipes')
       .then(response => {
         setRecipes(response.data);
         setFilteredRecipes(response.data); // Initialize with all recipes
@@ -55,7 +55,7 @@ const RecipesPage = () => {
   };
 
   const handleToggleFavorite = (recipeId, isFavorite) => {
-    axios.post(`http://localhost:5000/recipes/${recipeId}/favorite`)
+    axios.post(`https://recipe-app-0i3m.onrender.com/recipes/${recipeId}/favorite`)
       .then(() => {
         // Update the favorite status locally without needing to refetch all recipes
         setRecipes(prevRecipes =>

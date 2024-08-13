@@ -12,7 +12,7 @@ const LoginPopup = ({ onClose }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/login', { 
+      const response = await axios.post('https://recipe-app-0i3m.onrender.com/login', { 
         username: email,  // Assuming username is expected
         password 
       });

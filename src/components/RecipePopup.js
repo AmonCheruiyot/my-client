@@ -11,7 +11,7 @@ const RecipePopup = ({ recipeId, onClose }) => {
     const fetchRecipe = async () => {
       try {
         setLoading(true); // Start loading
-        const response = await axios.get(`http://localhost:5000/recipes/${recipeId}`);
+        const response = await axios.get(`https://recipe-app-0i3m.onrender.com/recipes/${recipeId}`);
         setRecipe(response.data);
       } catch (error) {
         console.error("Error fetching recipe:", error);

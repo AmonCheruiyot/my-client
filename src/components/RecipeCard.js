@@ -23,7 +23,7 @@ const RecipeCard = ({ recipe, onRecipeUpdated, isFavorite, onToggleFavorite }) =
   // Fetch reviews for the specific recipe
   const fetchReviews = useCallback(async () => {
     try {
-      const response = await fetch(`http://localhost:5000/recipes/${recipe.id}/reviews`);
+      const response = await fetch(`https://recipe-app-0i3m.onrender.com/recipes/${recipe.id}/reviews`);
       const data = await response.json();
       setReviews(data);
     } catch (error) {
@@ -40,7 +40,7 @@ const RecipeCard = ({ recipe, onRecipeUpdated, isFavorite, onToggleFavorite }) =
     setError(null); // Reset error state
     try {
       const method = isFavorite ? 'DELETE' : 'POST'; // Determine method based on current state
-      const response = await fetch(`http://localhost:5000/recipes/${recipe.id}/favorites`, {
+      const response = await fetch(`https://recipe-app-0i3m.onrender.com/recipes/${recipe.id}/favorites`, {
         method: method,
         headers: {
           'Content-Type': 'application/json',
@@ -107,7 +107,7 @@ const RecipeCard = ({ recipe, onRecipeUpdated, isFavorite, onToggleFavorite }) =
           reviews.map((review) => (
             <div key={review.id} className="review">
               <p><strong>{review.author}: </strong>{review.comment} <span>({review.rating}/5)</span></p>
-              <p><em>{new Date(review.created_at).toLocaleDateString()}</em></p>
+              
             </div>
           ))
         ) : (
