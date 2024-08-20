@@ -1,42 +1,53 @@
 import React, { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
-import { AuthContext } from '../context/AuthContext'; // Adjust the path as necessary
+import { AuthContext } from '../context/AuthContext';
+import { getToken } from '../utils';
+import { useNavigate } from 'react-router-dom';
+import './SupportPopup.css';
 
-const SupportPopup = () => {
+const SupportPopup = ({ onClose }) => {
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
-  const { authData } = useContext(AuthContext); // Get authData from AuthContext
+  const { authData, setAuthData } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // No need to fetch token separately; it's already part of authData
     if (!authData.token) {
-      console.error('No authentication token found.');
+      const tokenFromLocalStorage = getToken();
+      if (tokenFromLocalStorage) {
+        setAuthData((prevData) => ({ ...prevData, token: tokenFromLocalStorage }));
+      } else {
+        console.error('No authentication token found.');
+      }
     }
-  }, [authData.token]);
+  }, [authData.token, setAuthData]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Check for authentication
     if (!authData.token) {
-      alert('User not found or not authenticated.');
+      alert('User not authenticated.');
       return;
     }
 
     try {
-      await axios.post('/support/tickets',
+      await axios.post(
+        'https://recipe-app-0i3m.onrender.com/support/tickets',
         { subject, message },
         {
           headers: {
-            Authorization: `Bearer ${authData.token}` // Send JWT token in Authorization header
-          }
+            Authorization: `Bearer ${authData.token}`,
+          },
         }
       );
       alert('Support ticket submitted successfully!');
       setSubject('');
       setMessage('');
+      if (onClose) onClose();
+      navigate('/recipes');
     } catch (error) {
-      console.error(error);
+      console.error('Error submitting support ticket:', error);
+
       if (error.response) {
         switch (error.response.status) {
           case 400:
@@ -79,6 +90,6 @@ const SupportPopup = () => {
       </form>
     </div>
   );
-}
+};
 
 export default SupportPopup;

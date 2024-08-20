@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
-import { AuthContext } from '../context/AuthContext'; // Adjust this path based on your project structure
+import { AuthContext } from '../context/AuthContext';
 import './UploadRecipePopup.css'; // Optional: Include any additional styles
 
 const UploadRecipePopup = ({ onClose, onRecipeAdded }) => {
@@ -10,54 +10,63 @@ const UploadRecipePopup = ({ onClose, onRecipeAdded }) => {
     description: '',
     ingredients: '',
     instructions: '',
-    main_photo: null,
+    main_photo: '', // URL or empty string
   });
   const [error, setError] = useState(null); // To handle errors
 
+  // Handle form field changes
   const handleChange = (e) => {
-    const { name, value, files } = e.target;
+    const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
-      [name]: files ? files[0] : value,
+      [name]: value,
     }));
   };
 
   const handleUpload = async (e) => {
     e.preventDefault();
 
-    const data = new FormData();
-    for (const key in formData) {
-      if (formData[key]) {
-        data.append(key, formData[key]);
-      }
+    // Ensure the main photo URL is set
+    if (!formData.main_photo) {
+      setError('Main photo is required.');
+      return;
     }
+
+    // Ensure token is present and valid
+    if (!authData || !authData.token) {
+      setError('You must be logged in to upload a recipe.');
+      return;
+    }
+
+    // Create a new FormData object to send form data, including the URL
+    const data = new FormData();
+    data.append('name', formData.name);
+    data.append('description', formData.description);
+    data.append('ingredients', formData.ingredients);
+    data.append('instructions', formData.instructions);
+    data.append('main_photo_url', formData.main_photo); // URL submission
 
     try {
       const token = authData.token; // Get the token from authData
       const response = await axios.post('https://recipe-app-0i3m.onrender.com/recipes', data, {
         headers: {
-          Authorization: `Bearer ${token}`, // Use the token from authData. Do NOT set Content-Type.
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'multipart/form-data',
         },
       });
 
-      // Check for successful response
       if (response.status === 200 || response.status === 201) {
         alert('Recipe uploaded successfully');
-        onRecipeAdded(); // Notify parent about the new recipe
-        setFormData({
-          name: '',
-          description: '',
-          ingredients: '',
-          instructions: '',
-          main_photo: null,
-        }); // Clear form
+        onRecipeAdded(); // Notify parent component about new recipe
         onClose(); // Close the popup
       } else {
         setError('Failed to upload recipe. Please try again.');
       }
     } catch (error) {
-      console.error("Error uploading recipe:", error.response?.data || error.message);
-      setError(error.response?.data?.message || "Failed to upload recipe. Please try again.");
+      setError(
+        error.response?.data?.message ||
+        'An error occurred while uploading the recipe. Please try again.'
+      );
     }
   };
 
@@ -65,7 +74,7 @@ const UploadRecipePopup = ({ onClose, onRecipeAdded }) => {
     <div className="upload-recipe-popup">
       <button onClick={onClose}>Close</button>
       <h2>Upload New Recipe</h2>
-      {error && <p className="error">{error}</p>} {/* Show error message if exists */}
+      {error && <p className="error">{error}</p>}
       <form onSubmit={handleUpload}>
         <input
           type="text"
@@ -97,12 +106,13 @@ const UploadRecipePopup = ({ onClose, onRecipeAdded }) => {
           required
         />
         <input
-          type="file"
+          type="text"
           name="main_photo"
-          accept="image/*"
+          placeholder="Photo URL"
+          value={formData.main_photo}
           onChange={handleChange}
+          required
         />
-        
         <button type="submit">Upload Recipe</button>
       </form>
     </div>
