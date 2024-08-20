@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import './Footer.css'; // Import the CSS file
 
-const Footer = () => {
+const Footer = ({ onSupportClick }) => { // Accept onSupportClick as a prop
   useEffect(() => {
     let lastScrollTop = 0;
     const footer = document.querySelector(".footer");
@@ -29,7 +29,9 @@ const Footer = () => {
   return (
     <footer className="footer">
       <p>Recipe Haven © 2024</p>
-      <p><a href="/support">Support</a></p>
+      <p>
+        <button onClick={onSupportClick} className="support-link">Support</button>
+      </p>
     </footer>
   );
 }

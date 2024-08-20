@@ -43,7 +43,7 @@ const SupportPopup = ({ onClose }) => {
       alert('Support ticket submitted successfully!');
       setSubject('');
       setMessage('');
-      if (onClose) onClose();
+      if (onClose) onClose(); // Close the modal after submission
       navigate('/recipes');
     } catch (error) {
       console.error('Error submitting support ticket:', error);
@@ -66,28 +66,31 @@ const SupportPopup = ({ onClose }) => {
   };
 
   return (
-    <div className="support-popup">
-      <h2>Support</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <input
-            type="text"
-            placeholder="Subject"
-            value={subject}
-            onChange={(e) => setSubject(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <textarea
-            placeholder="Your Message"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            required
-          ></textarea>
-        </div>
-        <button type="submit">Send</button>
-      </form>
+    <div className="modal-overlay">
+      <div className="modal-content">
+        <h2>Support</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <input
+              type="text"
+              placeholder="Subject"
+              value={subject}
+              onChange={(e) => setSubject(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <textarea
+              placeholder="Your Message"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              required
+            ></textarea>
+          </div>
+          <button type="submit">Send</button>
+        </form>
+        <button className="close-button" onClick={onClose}>Close</button>
+      </div>
     </div>
   );
 };

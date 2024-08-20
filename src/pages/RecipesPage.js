@@ -3,13 +3,15 @@ import RecipesNavbar from '../components/Navbar/RecipesNavbar';
 import RecipeCard from '../components/RecipeCard';
 import Footer from '../components/Footer';
 import axios from 'axios';
-import UploadRecipePopup from '../components/UploadRecipePopup'; // Update this import
+import UploadRecipePopup from '../components/UploadRecipePopup'; 
+import SupportPopup from '../components/SupportPopup'; // Import the SupportPopup
 
 const RecipesPage = () => {
   const [recipes, setRecipes] = useState([]);
   const [filteredRecipes, setFilteredRecipes] = useState([]); // State for filtered recipes
   const [searchTerm, setSearchTerm] = useState(''); // State for search term
-  const [isUploading, setIsUploading] = useState(false); // To manage popup state
+  const [isUploading, setIsUploading] = useState(false); // To manage upload popup state
+  const [isSupportOpen, setIsSupportOpen] = useState(false); // To manage support popup state
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -54,6 +56,7 @@ const RecipesPage = () => {
   return (
     <div>
       <RecipesNavbar />
+      
       <button onClick={() => setIsUploading(!isUploading)}>
         {isUploading ? 'Cancel Upload' : 'Upload Recipe'}
       </button>
@@ -63,6 +66,7 @@ const RecipesPage = () => {
           onRecipeAdded={handleRecipeUploaded}  // Refresh recipes after upload
         />
       )}
+      
       
       {/* Search Input */}
       <div className="search-container">
@@ -86,7 +90,14 @@ const RecipesPage = () => {
           />
         ))}
       </div>
-      <Footer />
+
+      {/* Pass the function to open the SupportPopup to the Footer */}
+      <Footer onSupportClick={() => setIsSupportOpen(true)} />
+        Support
+    
+      {isSupportOpen && (
+        <SupportPopup onClose={() => setIsSupportOpen(false)} />
+      )}
     </div>
   );
 }
